@@ -6,20 +6,31 @@ import { FaRobot, FaUser } from "react-icons/fa";
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
 
   const sendMessage = async () => {
     if (input.trim() === "") return;
 
     const userMsg = { sender: "user", text: input };
-    setMessages([...messages, userMsg]);
-
-    const response = await axios.post("http://localhost:5000/chat", {
-      message: input,
-    });
-
-    const botMsg = { sender: "bot", text: response.data.response };
-    setMessages((prev) => [...prev, botMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInput("");
+    setIsTyping(true); // Show typing
+
+    try {
+      const response = await axios.post("http://localhost:5000/chat", {
+        message: input,
+      });
+
+      const botMsg = { sender: "bot", text: response.data.response };
+      setMessages((prev) => [...prev, botMsg]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Oops! Something went wrong." },
+      ]);
+    } finally {
+      setIsTyping(false); // Hide typing
+    }
   };
 
   const handleKeyDown = (e) => {
@@ -34,18 +45,33 @@ function App() {
           <div key={i} className={`message ${msg.sender}`}>
             {msg.sender === "bot" ? (
               <>
-                <FaRobot style={{ marginRight: "8px", verticalAlign: "middle" }} />
+                <FaRobot
+                  style={{ marginRight: "8px", verticalAlign: "middle" }}
+                />
                 {msg.text}
               </>
             ) : (
               <>
                 {msg.text}
-                <FaUser style={{ marginLeft: "8px", verticalAlign: "middle" }} />
+                <FaUser
+                  style={{ marginLeft: "8px", verticalAlign: "middle" }}
+                />
               </>
             )}
           </div>
         ))}
+
+        {isTyping && (
+          <div className="message bot typing">
+            <span className="dots">
+              <span>.</span>
+              <span>.</span>
+              <span>.</span>
+            </span>
+          </div>
+        )}
       </div>
+
       <div className="input-area">
         <input
           type="text"
