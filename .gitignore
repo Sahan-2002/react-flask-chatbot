@@ -1,0 +1,11 @@
+# Python
+backend/venv/
+__pycache__/
+
+# Node.js
+frontend/node_modules/
+
+# OS/Editor junk
+.DS_Store
+.env
+*.log
