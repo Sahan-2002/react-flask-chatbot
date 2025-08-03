@@ -1,0 +1,58 @@
+.landing-container {
+  height: 100vh;
+  background: url('background1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: #fff;
+  max-width: 90%;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.overlay p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+}
+
+.overlay button {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #00bfa5;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.overlay button:hover {
+  background-color: #008e76;
+}
+
+.admin-btn {
+  background-color: #4b7bec;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s;
+}
+
+.admin-btn:hover {
+  background-color: #3556a3;
+}

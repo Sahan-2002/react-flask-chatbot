@@ -9,7 +9,7 @@
 body {
   background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
-  background: var(--background);
+  /*background: var(--background);*/
   font-family: var(--font-family);
   margin: 0;
   padding: 0;
@@ -19,7 +19,7 @@ body {
 .chat-container {
   max-width: 600px;
   margin: 60px auto;
-  background: white;
+  background:rgba(255, 255, 255, 0.8); /* 20% transparent */;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
