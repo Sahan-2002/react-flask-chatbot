@@ -7,7 +7,7 @@
 }
 
 body {
-  background: url('https://images.unsplash.com/photo-1523362628745-0c100150b9c8?fit=crop&w=1920&q=80') no-repeat center center fixed;
+  background: url('background.jpg') no-repeat center center fixed;
   background-size: cover;
   background: var(--background);
   font-family: var(--font-family);
