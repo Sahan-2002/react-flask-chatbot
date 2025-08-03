@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import { FaRobot, FaUser } from "react-icons/fa";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AdminDashboard from "./components/AdminDashboard";
 
-function App() {
+function Chatbot() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -14,7 +16,7 @@ function App() {
     const userMsg = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
-    setIsTyping(true); // Show typing
+    setIsTyping(true);
 
     try {
       const response = await axios.post("http://localhost:5000/chat", {
@@ -29,7 +31,7 @@ function App() {
         { sender: "bot", text: "Oops! Something went wrong." },
       ]);
     } finally {
-      setIsTyping(false); // Hide typing
+      setIsTyping(false);
     }
   };
 
@@ -83,6 +85,17 @@ function App() {
         <button onClick={sendMessage}>Send</button>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Chatbot />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
